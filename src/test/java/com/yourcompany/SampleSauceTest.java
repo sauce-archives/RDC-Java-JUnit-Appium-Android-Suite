@@ -14,6 +14,7 @@ import org.testobject.appium.junit.TestObjectAppiumSuite;
 import io.appium.java_client.android.AndroidDriver;
 import java.net.URL;
 import java.util.List;
+import org.openqa.selenium.OutputType;
 
 
 @TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = INSERT_SUITE_NUMBER_HERE)
