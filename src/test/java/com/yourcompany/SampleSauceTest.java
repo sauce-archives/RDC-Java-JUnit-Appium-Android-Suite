@@ -48,10 +48,13 @@ public class SampleSauceTest {
     	
         WebElement button = driver.findElement(By.className("android.widget.Button"));
         button.click();
+        driver.getScreenshotAs(OutputType.FILE);
         List<WebElement> textFieldsList = driver.findElements(By.className("android.widget.EditText"));
         textFieldsList.get(0).sendKeys("Some Name");
         textFieldsList.get(2).sendKeys("Some@example.com");
+        driver.getScreenshotAs(OutputType.FILE);
         button.click();
+        driver.getScreenshotAs(OutputType.FILE);
     }
 
 }
