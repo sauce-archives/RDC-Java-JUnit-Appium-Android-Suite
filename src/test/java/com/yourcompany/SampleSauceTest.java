@@ -1,5 +1,7 @@
 package com.yourcompany;
 
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,7 +19,7 @@ import java.util.List;
 import org.openqa.selenium.OutputType;
 
 
-@TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = INSERT_SUITE_NUMBER_HERE)
+@TestObject(testObjectApiKey = "40F6FBD7A4EB4D369ADCBF5BAF3D3FC6", testObjectSuiteId = 7)
 @RunWith(TestObjectAppiumSuite.class)
 public class SampleSauceTest {
 
@@ -26,19 +28,20 @@ public class SampleSauceTest {
 
     @Rule
     public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher();
-    
-    private AndroidDriver driver;
+
+    private IOSDriver driver;
 
     @Before
     public void setUp() throws Exception {
-   
-    	
+
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("testobject_api_key", resultWatcher.getApiKey());
-        capabilities.setCapability("testobject_test_report_id", resultWatcher.getTestReportId());
+         capabilities.setCapability("testobject_test_report_id", resultWatcher.getTestReportId());
 
-        driver = new AndroidDriver(new URL("http://appium.testobject.com/wd/hub"), capabilities);
+
+        driver = new IOSDriver(new URL("http://appium.testobject.com/wd/hub"), capabilities);
 
         resultWatcher.setAppiumDriver(driver);
 
@@ -46,16 +49,27 @@ public class SampleSauceTest {
 
     @Test
     public void addContactTest() {
-    	
-        WebElement button = driver.findElement(By.className("android.widget.Button"));
-        button.click();
-        driver.getScreenshotAs(OutputType.FILE);
-        List<WebElement> textFieldsList = driver.findElements(By.className("android.widget.EditText"));
-        textFieldsList.get(0).sendKeys("Some Name");
-        textFieldsList.get(2).sendKeys("Some@example.com");
-        driver.getScreenshotAs(OutputType.FILE);
-        button.click();
-        driver.getScreenshotAs(OutputType.FILE);
+        long startTime = System.nanoTime();
+
+        WebElement x = driver.findElementByAccessibilityId("TextField1");
+
+        long estimatedTime = System.nanoTime() - startTime;
+
+
+        System.out.println("estimated time is ");
+        System.out.println(estimatedTime);
+
+
+        x.sendKeys("12");
+
+
+        // ... the code being measured ...
+
+        driver.findElementByAccessibilityId("TextField2").sendKeys("8");
+
+        driver.findElementByAccessibilityId("ComputeSumButton").click();
+
+
     }
 
 }
