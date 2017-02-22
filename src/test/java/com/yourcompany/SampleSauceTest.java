@@ -1,5 +1,6 @@
 package com.yourcompany;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -41,6 +42,13 @@ public class SampleSauceTest {
 
         resultWatcher.setAppiumDriver(driver);
 
+        System.out.println(testName.getMethodName() + " STARTING - Live view: " + driver.getCapabilities().getCapability("testobject_test_live_view_url"));
+
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println(testName.getMethodName() + " ENDING - Test report: " + driver.getCapabilities().getCapability("testobject_test_report_url"));
     }
 
     @Test
