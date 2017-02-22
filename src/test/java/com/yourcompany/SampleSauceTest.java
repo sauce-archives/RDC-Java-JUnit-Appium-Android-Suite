@@ -1,5 +1,6 @@
 package com.yourcompany;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -29,6 +30,7 @@ public class SampleSauceTest {
     public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher();
     
     private AndroidDriver driver;
+    private static Logger log = Logger.getLogger(SampleSauceTest.class);
 
     @Before
     public void setUp() throws Exception {
@@ -42,13 +44,13 @@ public class SampleSauceTest {
 
         resultWatcher.setAppiumDriver(driver);
 
-        System.out.println(testName.getMethodName() + " STARTING - Live view: " + driver.getCapabilities().getCapability("testobject_test_live_view_url"));
+        log.info(testName.getMethodName() + " STARTING - Live view: " + driver.getCapabilities().getCapability("testobject_test_live_view_url"));
 
     }
 
     @After
     public void tearDown() {
-        System.out.println(testName.getMethodName() + " ENDING - Test report: " + driver.getCapabilities().getCapability("testobject_test_report_url"));
+       log.info(testName.getMethodName() + " ENDING - Test report: " + driver.getCapabilities().getCapability("testobject_test_report_url"));
     }
 
     @Test
@@ -63,6 +65,7 @@ public class SampleSauceTest {
         driver.getScreenshotAs(OutputType.FILE);
         button.click();
         driver.getScreenshotAs(OutputType.FILE);
+
     }
 
 }
