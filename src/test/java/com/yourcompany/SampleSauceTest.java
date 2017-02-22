@@ -17,7 +17,7 @@ import java.util.List;
 import org.openqa.selenium.OutputType;
 
 
-@TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = INSERT_SUITE_NUMBER_HERE)
+@TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = 12345)
 @RunWith(TestObjectAppiumSuite.class)
 public class SampleSauceTest {
 
@@ -32,7 +32,6 @@ public class SampleSauceTest {
     @Before
     public void setUp() throws Exception {
    
-    	
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("testobject_api_key", resultWatcher.getApiKey());
