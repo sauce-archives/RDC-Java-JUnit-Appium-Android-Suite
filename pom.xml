@@ -65,6 +65,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
+                    <systemProperties>
+                        <property>
+                            <name>java.util.logging.config.file</name>
+                            <value>src/test/resources/logging.properties</value>
+                        </property>
+                    </systemProperties>
                 	<parallel>classes</parallel>
                     <threadCount>20</threadCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
