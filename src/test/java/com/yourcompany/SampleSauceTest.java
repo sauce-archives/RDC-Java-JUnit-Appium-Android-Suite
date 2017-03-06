@@ -1,5 +1,7 @@
 package com.yourcompany;
 
+import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,7 +19,7 @@ import java.util.List;
 import org.openqa.selenium.OutputType;
 
 
-@TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = INSERT_SUITE_NUMBER_HERE)
+@TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = 12345)
 @RunWith(TestObjectAppiumSuite.class)
 public class SampleSauceTest {
 
@@ -28,11 +30,11 @@ public class SampleSauceTest {
     public TestObjectTestResultWatcher resultWatcher = new TestObjectTestResultWatcher();
     
     private AndroidDriver driver;
+    private static Logger log = Logger.getLogger(SampleSauceTest.class);
 
     @Before
     public void setUp() throws Exception {
    
-    	
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability("testobject_api_key", resultWatcher.getApiKey());
@@ -42,6 +44,13 @@ public class SampleSauceTest {
 
         resultWatcher.setAppiumDriver(driver);
 
+        log.info(testName.getMethodName() + " STARTING - Live view: " + driver.getCapabilities().getCapability("testobject_test_live_view_url"));
+
+    }
+
+    @After
+    public void tearDown() {
+       log.info(testName.getMethodName() + " ENDING - Test report: " + driver.getCapabilities().getCapability("testobject_test_report_url"));
     }
 
     @Test
@@ -56,6 +65,7 @@ public class SampleSauceTest {
         driver.getScreenshotAs(OutputType.FILE);
         button.click();
         driver.getScreenshotAs(OutputType.FILE);
+
     }
 
 }

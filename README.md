@@ -14,8 +14,10 @@
     ```
     $ brew install maven
     ```
-2. TestObject Credentials
-    * Add your TestObject API Key and the Suite Number on line 19 as indicated
+2. TestObject Environment Variables
+    * export TESTOBJECT_API_KEY=<your project's API key>
+    ```
+    * export TESTOBJECT_SUITE_ID=<your targeted suite's ID>
 
 3. Project Dependencies
     * Check that packages are available
