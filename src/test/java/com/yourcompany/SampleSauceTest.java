@@ -2,6 +2,7 @@ package com.yourcompany;
 
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -51,25 +52,34 @@ public class SampleSauceTest {
     public void addContactTest() {
         long startTime = System.nanoTime();
 
-        WebElement x = driver.findElementByAccessibilityId("TextField1");
+        for (int i = 1; i < 3; i++) {
+            WebElement x = driver.findElementByAccessibilityId("TextField1");
+            x.clear();
+            x.sendKeys("12");
 
-        long estimatedTime = System.nanoTime() - startTime;
+            x = driver.findElementByAccessibilityId("TextField2");
+            x.clear();
+            x.sendKeys(String.valueOf(i));
 
+            driver.findElementByAccessibilityId("ComputeSumButton").click();
 
-        System.out.println("estimated time is ");
-        System.out.println(estimatedTime);
+            String result = driver.findElementByClassName("UIAStaticText").getText();
 
+            Assert.assertEquals("calculation failed", String.valueOf(12 + i), result);
 
-        x.sendKeys("12");
+            driver.findElementByAccessibilityId("show alert").click();
 
+            System.out.println(driver.getPageSource());
 
-        // ... the code being measured ...
+            Assert.assertTrue(driver.findElementByAccessibilityId("this alert is so cool.").isDisplayed());
 
-        driver.findElementByAccessibilityId("TextField2").sendKeys("8");
+            driver.findElementByXPath("//UIAButton[@name='OK']").click();
+        }
 
-        driver.findElementByAccessibilityId("ComputeSumButton").click();
-
-
+        System.out.println("\n\nestimated time is ");
+        long elapsedTime = System.nanoTime() - startTime;
+        System.out.println((double)elapsedTime / 1000000000.0 );
+        System.out.println("\n\n");
     }
 
 }
