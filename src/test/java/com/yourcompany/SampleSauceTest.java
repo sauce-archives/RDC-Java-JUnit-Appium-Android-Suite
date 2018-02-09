@@ -19,7 +19,7 @@ import java.util.List;
 import org.openqa.selenium.OutputType;
 
 
-@TestObject(testObjectApiKey = "INSERT_API_KEY_HERE", testObjectSuiteId = 12345)
+@TestObject(testObjectApiKey = "Insert API Key Here", testObjectSuiteId = 12345)
 @RunWith(TestObjectAppiumSuite.class)
 public class SampleSauceTest {
 
@@ -40,7 +40,7 @@ public class SampleSauceTest {
         capabilities.setCapability("testobject_api_key", resultWatcher.getApiKey());
         capabilities.setCapability("testobject_test_report_id", resultWatcher.getTestReportId());
 
-        driver = new AndroidDriver(new URL("http://appium.testobject.com/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL("https://us1.appium.testobject.com/wd/hub"), capabilities);
 
         resultWatcher.setAppiumDriver(driver);
 
